@@ -19,15 +19,16 @@ const Title = styled.h1`
 `;
 
 const MoodGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
+  justify-content: center;
+  flex-wrap: nowrap;
 `;
 
 const MoodButton = styled.button`
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 4rem;
   font-size: 1.3rem;
   border: none;
   border-radius: 12px;
@@ -35,7 +36,8 @@ const MoodButton = styled.button`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 250px;
+  min-width: 280px;
+  flex: 1;
 
   &:hover {
     transform: translateY(-2px);
@@ -49,9 +51,6 @@ const MOODS: { [key in MoodType]: string } = {
   confused: "혼란스러워요 🤔",
   sad: "슬퍼요 😢",
   hungry: "배고파요 🍽️",
-  clear: "맑아요 ☀️",
-  clouds: "흐려요 ☁️",
-  rain: "비와요 🌧️",
 };
 
 export const MoodSelection = () => {

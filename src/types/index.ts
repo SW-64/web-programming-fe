@@ -5,15 +5,7 @@ export interface QuoteResponse {
   quotes: string[];
 }
 
-export type MoodType =
-  | "happy"
-  | "tired"
-  | "confused"
-  | "sad"
-  | "hungry"
-  | "clear"
-  | "clouds"
-  | "rain";
+export type MoodType = "happy" | "tired" | "confused" | "sad" | "hungry";
 
 export const CITIES = [
   "Seoul",
