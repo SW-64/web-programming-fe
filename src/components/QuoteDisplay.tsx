@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { QuoteResponse } from "../types";
+import { API_URL } from "../config";
 
 const Container = styled.div`
   display: flex;
@@ -79,10 +80,10 @@ export const QuoteDisplay = () => {
 
         console.log(
           "API 요청 시작:",
-          `http://localhost:3000/mood-quote?city=${city}&mood=${mood}`
+          `${API_URL}/mood-quote?city=${city}&mood=${mood}`
         );
         const response = await fetch(
-          `http://localhost:3000/mood-quote?city=${city}&mood=${mood}`
+          `${API_URL}/mood-quote?city=${city}&mood=${mood}`
         );
         console.log("API 응답 상태:", response.status);
 
