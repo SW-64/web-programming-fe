@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { QuoteResponse } from "../types";
+import { QuoteResponse, HistoryItem } from "../types";
 import { API_URL } from "../config";
 
 const Container = styled.div`
@@ -66,6 +66,19 @@ export const QuoteDisplay = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const saveToHistory = (data: QuoteResponse) => {
+    const historyItem: HistoryItem = {
+      id: Date.now().toString(),
+      ...data,
+      timestamp: Date.now(),
+    };
+
+    const savedHistory = localStorage.getItem("quoteHistory");
+    const history = savedHistory ? JSON.parse(savedHistory) : [];
+    history.unshift(historyItem); // 새로운 항목을 맨 앞에 추가
+    localStorage.setItem("quoteHistory", JSON.stringify(history));
+  };
+
   useEffect(() => {
     const fetchQuote = async () => {
       try {
@@ -94,6 +107,7 @@ export const QuoteDisplay = () => {
         const data = await response.json();
         console.log("받은 데이터:", data);
         setQuoteData(data);
+        saveToHistory(data);
       } catch (err) {
         console.error("에러 발생:", err);
         setError(

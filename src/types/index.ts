@@ -28,3 +28,14 @@ export const CITIES = [
 ] as const;
 
 export type CityType = (typeof CITIES)[number];
+
+export interface HistoryItem {
+  id: string;
+  city: string;
+  mood: string;
+  weather: string;
+  quotes: string[];
+  timestamp: number;
+}
+
+export type HistoryType = HistoryItem[];
